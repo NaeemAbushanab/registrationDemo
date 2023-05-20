@@ -11,10 +11,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RegistrationDemo"
         tools:targetApi="31">
+
+        <activity
+            android:name=".RegistrationPage"
+            android:exported="false"
+            android:label="Registration Page"/>
+
         <activity
             android:name=".MyProfile"
-            android:exported="false" />
+            android:exported="false"
+            android:label="My Profile"/>
+
+
         <activity
+
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

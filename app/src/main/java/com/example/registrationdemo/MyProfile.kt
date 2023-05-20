@@ -1,24 +1,38 @@
 package com.example.registrationdemo
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import com.example.registrationdemo.databinding.ActivityMyProfileBinding
 
 class MyProfile : AppCompatActivity() {
-    @SuppressLint("SetTextI18n", "ResourceType")
+    private lateinit var binding:ActivityMyProfileBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_profile)
+        binding = ActivityMyProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        var myProfileActivity_profile_image:de.hdodenhof.circleimageview.CircleImageView? = null
-        myProfileActivity_profile_image = findViewById(R.id.myProfileActivity_profile_image)
-        val tx_name:TextView = findViewById(R.id.tx_name)
-        val tx_email:TextView = findViewById(R.id.tx_email)
+        val shared: SharedPreferences = getSharedPreferences("com.example.registrationdemo", MODE_PRIVATE)
 
-        tx_name.text = "${intent.getStringExtra("etx_first_name")} ${intent.getStringExtra("etx_last_name")}"
-        tx_email.text = intent.getStringExtra("etx_email")
+        binding.savedEmailTextView.text = shared.getString("email","")
+        binding.savedFullNameTextView.text = shared.getString("fullName","")
+
+        binding.logoutButton.setOnClickListener{
+            val editor:SharedPreferences.Editor = shared.edit()
+            val intent = Intent(baseContext, RegistrationPage::class.java)
+
+            editor.clear()
+            editor.apply()
+            startActivity(intent)
+
+        }
+
+
+
 
 
 
