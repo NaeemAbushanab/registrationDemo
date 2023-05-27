@@ -20,7 +20,7 @@
             android:orientation="horizontal"
             android:weightSum="6">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/myProfileImage_imageView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

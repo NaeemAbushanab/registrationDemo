@@ -2,13 +2,15 @@ package com.example.registrationdemo
 
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.example.registrationdemo.databinding.ActivityRegistrationPageBinding
+import kotlin.system.exitProcess
 
 
 class RegistrationPage : AppCompatActivity() {
@@ -54,6 +56,7 @@ class RegistrationPage : AppCompatActivity() {
                 "fullName",
                 "${binding.firstNameEditText.text} ${binding.lastNameEditText.text}"
             )
+
             editor.putString("email", "${binding.emailEditText.text}")
             editor.putBoolean("isLogin", true)
 
@@ -66,6 +69,7 @@ class RegistrationPage : AppCompatActivity() {
 
         }
 
+
     }
 
     private fun navToMyProfile(){
@@ -73,5 +77,8 @@ class RegistrationPage : AppCompatActivity() {
         startActivity(intent)
     }
 
-
+    override fun onBackPressed() {
+        moveTaskToBack(true);
+        exitProcess(-1)
+    }
 }
